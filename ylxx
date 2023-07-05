@@ -1,7 +1,24 @@
-local InfiniteJumpEnabled = true
-game:GetService("UserInputService").JumpRequest:connect(function()
-if InfiniteJumpEnabled then
-game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+local mods = {
+    Damage = 100, 
+    FanFire = true, 
+    camShakeResist = 0, 
+    Spread = 0, 
+    prepTime = 0, 
+    equipTime = 0, 
+    MaxShots = math.huge, 
+    ReloadAnimationSpeed = 0, 
+    ReloadSpeed = 0, 
+    HipFireAccuracy = 0, 
+    ZoomAccuracy = 0, 
+    InstantFireAnimation = true
+}
+
+for _, gun in pairs(require(game:GetService("ReplicatedStorage").GunScripts.GunStats)) do
+    for prop, value in pairs(mods) do
+        if gun[prop] then
+            gun[prop] = value
+        end
+    end
 end
-end)
    end,
+})
